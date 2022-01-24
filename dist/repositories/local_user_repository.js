@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class LocalUserRepository {
     constructor() {
         this.usuarios = [];
+        this.createUser = this.createUser.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
     createUser(id) {
         return __awaiter(this, void 0, void 0, function* () {

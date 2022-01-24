@@ -1,14 +1,19 @@
 import { Router } from "express";
 import UserController from "./controllers/user_controller";
+import IUserRepository from "./repositories/i_user_repository";
 import LocalUserRepository from "./repositories/local_user_repository";
 
 const router = Router()
 
-const userRepository = new LocalUserRepository()
-const userController = new UserController(userRepository)
+const userRepository: IUserRepository = new LocalUserRepository()
+const userController: UserController = new UserController(userRepository)
 
+// assim da certo
+router.get('/', async (req, res) => {
+    return await userController.buscarUsuario(req, res);
+})
 
-router.get('/', userController.buscarUsuario)
+// assim da erro
 router.post('/', userController.criarUsuario)
 
 export default router

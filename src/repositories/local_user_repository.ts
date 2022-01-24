@@ -4,6 +4,11 @@ export default class LocalUserRepository implements IUserRepository {
 
     usuarios: string[] = []
 
+    constructor () {
+        this.createUser = this.createUser.bind(this)
+        this.getUser = this.getUser.bind(this)
+    }
+
     async createUser(id: string): Promise<string> {
         this.usuarios.push(id)
         return 'Criou com id ' + id
